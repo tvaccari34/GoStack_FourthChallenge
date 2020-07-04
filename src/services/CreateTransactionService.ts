@@ -1,4 +1,6 @@
-import TransactionsRepository from '../repositories/TransactionsRepository';
+import TransactionsRepository, {
+  TransactionDTO,
+} from '../repositories/TransactionsRepository';
 import Transaction from '../models/Transaction';
 
 class CreateTransactionService {
@@ -8,8 +10,9 @@ class CreateTransactionService {
     this.transactionsRepository = transactionsRepository;
   }
 
-  public execute(): Transaction {
-    // TODO
+  public execute({ title, value, type }: TransactionDTO): Transaction {
+    const request = this.transactionsRepository.create({ title, value, type });
+    return request;
   }
 }
 
